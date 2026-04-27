@@ -1882,9 +1882,6 @@ impl Connection {
     }
 
     fn try_start_cm(&mut self, peer_id: String, name: String, authorized: bool) {
-        // [MODIFIKASI] - Menghentikan pengiriman sinyal ke Connection Manager (CM)
-        // Agar popup/jendela indikator bahwa perangkat sedang di-remote tidak pernah muncul.
-        /*
         self.send_to_cm(ipc::Data::Login {
             id: self.inner.id(),
             is_file_transfer: self.file_transfer.is_some(),
@@ -1905,7 +1902,6 @@ impl Connection {
             block_input: self.block_input,
             from_switch: self.from_switch,
         });
-        */
     }
 
     #[inline]

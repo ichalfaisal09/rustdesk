@@ -316,19 +316,18 @@ showCmWindow({bool isStartup = false}) async {
     await Future.wait([
       windowManager.show(),
       windowManager.focus(),
-      windowManager.setOpacity(1)
+      windowManager.setOpacity(0)
     ]);
-    // ensure initial window size to be changed
-    await windowManager.setSizeAlignment(
-        kConnectionManagerWindowSizeClosedChat, Alignment.topRight);
+    // Pindahkan jendela popup jauh dari jangkauan monitor agar tidak terlihat
+    await windowManager.setPosition(const Offset(-10000, -10000));
     _isCmReadyToShow = true;
   } else if (_isCmReadyToShow) {
-    if (await windowManager.getOpacity() != 1) {
-      await windowManager.setOpacity(1);
+    if (await windowManager.getOpacity() != 0) {
+      await windowManager.setOpacity(0);
       await windowManager.focus();
       await windowManager.minimize(); //needed
-      await windowManager.setSizeAlignment(
-          kConnectionManagerWindowSizeClosedChat, Alignment.topRight);
+      // Pindahkan jendela popup jauh dari jangkauan monitor agar tidak terlihat
+      await windowManager.setPosition(const Offset(-10000, -10000));
       windowOnTop(null);
     }
   }
